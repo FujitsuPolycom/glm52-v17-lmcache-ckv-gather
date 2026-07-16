@@ -6,6 +6,13 @@ This package builds one pinned container containing:
 - LMCache 0.4.6 with TP4/DCP4 MLA compatibility and RAM-backed KV reuse
 - an eager-prefill CKV-gather path that leaves decode on the stock v17 path
 
+## Credits
+
+The full-CKV gather direction builds on **@koush's** prototype and design notes,
+with **@luke's** DCP/MLA technical review and corrections. Handles refer to their
+Discord identities. This repository is an independent vLLM port, LMCache
+integration, validation effort, and experimental release package for `ai01`.
+
 ## Status
 
 This is a GPU-validated **experimental** release, not a production-supported
