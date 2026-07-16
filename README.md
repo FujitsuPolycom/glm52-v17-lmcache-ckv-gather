@@ -11,7 +11,7 @@ This package builds one pinned container containing:
 The full-CKV gather direction builds on **@koush's** prototype and design notes,
 with **@luke's** DCP/MLA technical review and corrections. Handles refer to their
 Discord identities. This repository is an independent vLLM port, LMCache
-integration, validation effort, and experimental release package for `ai01`.
+integration, validation effort, and experimental release package for 'v17' glm52.
 
 ## Status
 
