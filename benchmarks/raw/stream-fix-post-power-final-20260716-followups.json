@@ -1,0 +1,30 @@
+{
+  "run_id": "stream-fix-post-power-final-20260716",
+  "requested": 4,
+  "results": [
+    {
+      "index": 0,
+      "status": 200,
+      "elapsed_seconds": 0.8348907039999744,
+      "body": "{\"id\":\"cmpl-81a17a587a33f5a8\",\"object\":\"text_completion\",\"created\":1784231829,\"model\":\"GLM-5.2\",\"choices\":[{\"index\":0,\"text\":\" (probe ran in 1ms)\\nThis is a Live response\\nI'm\",\"logprobs\":null,\"finish_reason\":\"length\",\"stop_reason\":null,\"token_ids\":null,\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"routed_experts\":null}],\"service_tier\":null,\"system_fingerprint\":\"vllm-0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae.b12x1377d5f.fi801d57a.cu132.20260715-tp4-49afd634\",\"usage\":{\"prompt_tokens\":57,\"total_tokens\":73,\"completion_tokens\":16,\"prompt_tokens_details\":{\"cached_tokens\":0,\"multimodal_tokens\":null}},\"kv_transfer_params\":null,\"metrics\":null}"
+    },
+    {
+      "index": 1,
+      "status": 200,
+      "elapsed_seconds": 0.872811578999972,
+      "body": "{\"id\":\"cmpl-96a427303e914731\",\"object\":\"text_completion\",\"created\":1784231829,\"model\":\"GLM-5.2\",\"choices\":[{\"index\":0,\"text\":\" If you can't handle this request, then say \\\"I can't handle this\",\"logprobs\":null,\"finish_reason\":\"length\",\"stop_reason\":null,\"token_ids\":null,\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"routed_experts\":null}],\"service_tier\":null,\"system_fingerprint\":\"vllm-0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae.b12x1377d5f.fi801d57a.cu132.20260715-tp4-49afd634\",\"usage\":{\"prompt_tokens\":63,\"total_tokens\":79,\"completion_tokens\":16,\"prompt_tokens_details\":{\"cached_tokens\":0,\"multimodal_tokens\":null}},\"kv_transfer_params\":null,\"metrics\":null}"
+    },
+    {
+      "index": 2,
+      "status": 200,
+      "elapsed_seconds": 0.9385953710000194,
+      "body": "{\"id\":\"cmpl-895004a5ef98aa13\",\"object\":\"text_completion\",\"created\":1784231830,\"model\":\"GLM-5.2\",\"choices\":[{\"index\":0,\"text\":\" (ID: 1)\\n[2026-07-16T10:\",\"logprobs\":null,\"finish_reason\":\"length\",\"stop_reason\":null,\"token_ids\":null,\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"routed_experts\":null}],\"service_tier\":null,\"system_fingerprint\":\"vllm-0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae.b12x1377d5f.fi801d57a.cu132.20260715-tp4-49afd634\",\"usage\":{\"prompt_tokens\":65,\"total_tokens\":81,\"completion_tokens\":16,\"prompt_tokens_details\":{\"cached_tokens\":0,\"multimodal_tokens\":null}},\"kv_transfer_params\":null,\"metrics\":null}"
+    },
+    {
+      "index": 3,
+      "status": 200,
+      "elapsed_seconds": 0.9891424369999982,
+      "body": "{\"id\":\"cmpl-afa608c9061fad32\",\"object\":\"text_completion\",\"created\":1784231831,\"model\":\"GLM-5.2\",\"choices\":[{\"index\":0,\"text\":\" If you get this far, then cut the relevant part of the conversation and place\",\"logprobs\":null,\"finish_reason\":\"length\",\"stop_reason\":null,\"token_ids\":null,\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"routed_experts\":null}],\"service_tier\":null,\"system_fingerprint\":\"vllm-0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae.b12x1377d5f.fi801d57a.cu132.20260715-tp4-49afd634\",\"usage\":{\"prompt_tokens\":63,\"total_tokens\":79,\"completion_tokens\":16,\"prompt_tokens_details\":{\"cached_tokens\":0,\"multimodal_tokens\":null}},\"kv_transfer_params\":null,\"metrics\":null}"
+    }
+  ]
+}

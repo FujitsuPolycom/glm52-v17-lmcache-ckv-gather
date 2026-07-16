@@ -1,0 +1,54 @@
+{
+  "run_id": "stream-fix-cycle1-20260716",
+  "requested": 8,
+  "results": [
+    {
+      "index": 0,
+      "status": 200,
+      "elapsed_seconds": 0.6180224280001312,
+      "body": "{\"id\":\"cmpl-88ed9ea5f162d574\",\"object\":\"text_completion\",\"created\":1784230515,\"model\":\"GLM-5.2\",\"choices\":[{\"index\":0,\"text\":\" If you don't have the answer, say \\\"I don't know\\\". Do\",\"logprobs\":null,\"finish_reason\":\"length\",\"stop_reason\":null,\"token_ids\":null,\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"routed_experts\":null}],\"service_tier\":null,\"system_fingerprint\":\"vllm-0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae.b12x1377d5f.fi801d57a.cu132.20260715-tp4-49afd634\",\"usage\":{\"prompt_tokens\":67,\"total_tokens\":83,\"completion_tokens\":16,\"prompt_tokens_details\":{\"cached_tokens\":0,\"multimodal_tokens\":null}},\"kv_transfer_params\":null,\"metrics\":null}"
+    },
+    {
+      "index": 1,
+      "status": 200,
+      "elapsed_seconds": 0.5520171020000362,
+      "body": "{\"id\":\"cmpl-98dd31592e81a75c\",\"object\":\"text_completion\",\"created\":1784230516,\"model\":\"GLM-5.2\",\"choices\":[{\"index\":0,\"text\":\" - r/Proxmox\\n\\nr/Proxmox \u2022 u/No\",\"logprobs\":null,\"finish_reason\":\"length\",\"stop_reason\":null,\"token_ids\":null,\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"routed_experts\":null}],\"service_tier\":null,\"system_fingerprint\":\"vllm-0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae.b12x1377d5f.fi801d57a.cu132.20260715-tp4-49afd634\",\"usage\":{\"prompt_tokens\":58,\"total_tokens\":74,\"completion_tokens\":16,\"prompt_tokens_details\":{\"cached_tokens\":0,\"multimodal_tokens\":null}},\"kv_transfer_params\":null,\"metrics\":null}"
+    },
+    {
+      "index": 2,
+      "status": 200,
+      "elapsed_seconds": 0.7425284519999877,
+      "body": "{\"id\":\"cmpl-9be412340ce288bc\",\"object\":\"text_completion\",\"created\":1784230516,\"model\":\"GLM-5.2\",\"choices\":[{\"index\":0,\"text\":\" If you see this in logs, the system is working.\\nOkay, I've\",\"logprobs\":null,\"finish_reason\":\"length\",\"stop_reason\":null,\"token_ids\":null,\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"routed_experts\":null}],\"service_tier\":null,\"system_fingerprint\":\"vllm-0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae.b12x1377d5f.fi801d57a.cu132.20260715-tp4-49afd634\",\"usage\":{\"prompt_tokens\":67,\"total_tokens\":83,\"completion_tokens\":16,\"prompt_tokens_details\":{\"cached_tokens\":0,\"multimodal_tokens\":null}},\"kv_transfer_params\":null,\"metrics\":null}"
+    },
+    {
+      "index": 3,
+      "status": 200,
+      "elapsed_seconds": 0.5463686989999132,
+      "body": "{\"id\":\"cmpl-ab5b1eb1fbccc2b3\",\"object\":\"text_completion\",\"created\":1784230517,\"model\":\"GLM-5.2\",\"choices\":[{\"index\":0,\"text\":\" - r/numbertheory\\n\\nr/numbertheory \u2022 u/AutoModerator\",\"logprobs\":null,\"finish_reason\":\"length\",\"stop_reason\":null,\"token_ids\":null,\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"routed_experts\":null}],\"service_tier\":null,\"system_fingerprint\":\"vllm-0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae.b12x1377d5f.fi801d57a.cu132.20260715-tp4-49afd634\",\"usage\":{\"prompt_tokens\":61,\"total_tokens\":77,\"completion_tokens\":16,\"prompt_tokens_details\":{\"cached_tokens\":0,\"multimodal_tokens\":null}},\"kv_transfer_params\":null,\"metrics\":null}"
+    },
+    {
+      "index": 4,
+      "status": 200,
+      "elapsed_seconds": 0.44521943199993075,
+      "body": "{\"id\":\"cmpl-bbdb9a761991610b\",\"object\":\"text_completion\",\"created\":1784230518,\"model\":\"GLM-5.2\",\"choices\":[{\"index\":0,\"text\":\" - r/ollama\\n\\nr/ollama \u2022 u/No_Phot\",\"logprobs\":null,\"finish_reason\":\"length\",\"stop_reason\":null,\"token_ids\":null,\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"routed_experts\":null}],\"service_tier\":null,\"system_fingerprint\":\"vllm-0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae.b12x1377d5f.fi801d57a.cu132.20260715-tp4-49afd634\",\"usage\":{\"prompt_tokens\":62,\"total_tokens\":78,\"completion_tokens\":16,\"prompt_tokens_details\":{\"cached_tokens\":0,\"multimodal_tokens\":null}},\"kv_transfer_params\":null,\"metrics\":null}"
+    },
+    {
+      "index": 5,
+      "status": 200,
+      "elapsed_seconds": 0.5008112870000332,
+      "body": "{\"id\":\"cmpl-9380019f16367d02\",\"object\":\"text_completion\",\"created\":1784230518,\"model\":\"GLM-5.2\",\"choices\":[{\"index\":0,\"text\":\" If you don't know what this is about, ignore it. Probe 5\",\"logprobs\":null,\"finish_reason\":\"length\",\"stop_reason\":null,\"token_ids\":null,\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"routed_experts\":null}],\"service_tier\":null,\"system_fingerprint\":\"vllm-0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae.b12x1377d5f.fi801d57a.cu132.20260715-tp4-49afd634\",\"usage\":{\"prompt_tokens\":61,\"total_tokens\":77,\"completion_tokens\":16,\"prompt_tokens_details\":{\"cached_tokens\":0,\"multimodal_tokens\":null}},\"kv_transfer_params\":null,\"metrics\":null}"
+    },
+    {
+      "index": 6,
+      "status": 200,
+      "elapsed_seconds": 0.49551425099980406,
+      "body": "{\"id\":\"cmpl-b0203ba10ebf3841\",\"object\":\"text_completion\",\"created\":1784230519,\"model\":\"GLM-5.2\",\"choices\":[{\"index\":0,\"text\":\" - r/Proxmox\\n\\nr/Proxmox \u2022 u/No\",\"logprobs\":null,\"finish_reason\":\"length\",\"stop_reason\":null,\"token_ids\":null,\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"routed_experts\":null}],\"service_tier\":null,\"system_fingerprint\":\"vllm-0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae.b12x1377d5f.fi801d57a.cu132.20260715-tp4-49afd634\",\"usage\":{\"prompt_tokens\":61,\"total_tokens\":77,\"completion_tokens\":16,\"prompt_tokens_details\":{\"cached_tokens\":0,\"multimodal_tokens\":null}},\"kv_transfer_params\":null,\"metrics\":null}"
+    },
+    {
+      "index": 7,
+      "status": 200,
+      "elapsed_seconds": 0.5455434110001534,
+      "body": "{\"id\":\"cmpl-8f53baffd6e920f4\",\"object\":\"text_completion\",\"created\":1784230519,\"model\":\"GLM-5.2\",\"choices\":[{\"index\":0,\"text\":\" \u00b7 Issue #7 \u00b7 stream-fix/cycle1-20260716\\n\\n\",\"logprobs\":null,\"finish_reason\":\"length\",\"stop_reason\":null,\"token_ids\":null,\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"routed_experts\":null}],\"service_tier\":null,\"system_fingerprint\":\"vllm-0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae.b12x1377d5f.fi801d57a.cu132.20260715-tp4-49afd634\",\"usage\":{\"prompt_tokens\":68,\"total_tokens\":84,\"completion_tokens\":16,\"prompt_tokens_details\":{\"cached_tokens\":0,\"multimodal_tokens\":null}},\"kv_transfer_params\":null,\"metrics\":null}"
+    }
+  ]
+}

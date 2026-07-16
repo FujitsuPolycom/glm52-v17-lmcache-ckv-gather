@@ -18,8 +18,11 @@ mean, consistent with decode remaining on the stock v17 path.
 | Prompt | TTFT | Prefill | Result |
 | --- | ---: | ---: | --- |
 | 196,610 tokens | 68.937 s | 2,852 tok/s | Request and transition passed |
-| 258,048 tokens | 97.015 s | 2,660 tok/s | Request completed; later CUDA fault during store-future polling |
+| 258,048 tokens, pre-fix | 97.015 s | 2,660 tok/s | Request completed; later CUDA fault |
+| 258,048 tokens, exp.2 #1 | 90.869 s | 2,840 tok/s | Pass + 8/8 follow-ups |
+| 258,048 tokens, exp.2 #2 | 91.583 s | 2,818 tok/s | Pass + 8/8 follow-ups |
+| 258,048 tokens, post-reboot | 90.423 s | 2,854 tok/s | Pass + 4/4 follow-ups |
 
-The second result is a reproducer, not a pass. The staged 84-chunk multi-future
-fix has not yet been rerun on GPU hardware.
-
+Each exp.2 run drained 2,016 LMCache objects totaling 9,562,226,688 bytes. The
+three-run mean TTFT was 90.958 seconds, and all 20 immediate unique follow-ups
+returned HTTP 200 without a CUDA error or engine restart.

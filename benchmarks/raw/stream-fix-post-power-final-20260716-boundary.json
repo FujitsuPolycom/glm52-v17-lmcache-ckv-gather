@@ -1,0 +1,71 @@
+{
+  "started_at": "2026-07-16T19:55:37.930920+00:00",
+  "finished_at": "2026-07-16T19:57:08.972303+00:00",
+  "arguments": {
+    "model": "GLM-5.2",
+    "prompt_tokens": 258048,
+    "max_tokens": 16,
+    "max_model_len": 262144,
+    "run_id": "stream-fix-post-power-final-20260716",
+    "clear_cache": true
+  },
+  "model_info": {
+    "object": "list",
+    "data": [
+      {
+        "id": "GLM-5.2",
+        "object": "model",
+        "created": 1784231737,
+        "owned_by": "vllm",
+        "root": "/root/models/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid",
+        "parent": null,
+        "max_model_len": 262144,
+        "permission": [
+          {
+            "id": "modelperm-95fb80a4ef9b0eac",
+            "object": "model_permission",
+            "created": 1784231737,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "name": "boundary",
+    "prompt_tokens": 258048,
+    "completion_tokens": 16,
+    "ttft_seconds": 90.42288066400005,
+    "elapsed_seconds": 91.025022299,
+    "output": "-20260716 record 0008379: alpha beta gamma delta"
+  },
+  "metrics_delta": {
+    "vllm:prefix_cache_queries_total": 258076.0,
+    "vllm:prefix_cache_hits_total": 0.0,
+    "vllm:external_prefix_cache_queries_total": 258076.0,
+    "vllm:external_prefix_cache_hits_total": 0.0,
+    "vllm:num_preemptions_total": 0.0
+  },
+  "lmcache": {
+    "objects_before": 0,
+    "objects_after": 2016,
+    "bytes_before": 0,
+    "bytes_after": 9562226688,
+    "retained_sessions_after": 1,
+    "store_controller_after": {
+      "is_healthy": true,
+      "thread_alive": true,
+      "pending_keys_count": 0,
+      "in_flight_task_count": 0,
+      "num_l2_adapters": 0
+    }
+  }
+}

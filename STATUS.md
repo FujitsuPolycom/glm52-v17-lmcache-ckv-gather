@@ -11,17 +11,24 @@
 - [x] 192K CUDA IPC event-lifetime validation
 - [x] Machine-specific paths moved into `.env`
 - [x] No credentials included
+- [x] Three exact 258,048-token cold-store runs
+- [x] 20/20 immediate unique follow-up requests after boundary runs
+- [x] Clean post-power-cycle boundary regression
+- [x] Zero container restarts, OOM kills, CUDA errors, or engine deaths
+- [x] Current-stream CKV all-gather and active-page-width guards installed
 
-## Required before publication
+## Required before production use
 
-- [ ] ai01 returns and all four GPUs pass health checks
-- [ ] Build the combined image from this directory
-- [ ] Pass one controlled 258,048-token cold store and post-prefill decode
-- [ ] Replay the same prefix from LMCache without a CUDA fault
+- [x] ai01 and all four GPUs pass health checks
+- [x] Pass controlled 258,048-token cold stores and post-prefill decode
+- [x] Verify container health and zero restarts after each large test
+- [x] Generate source checksums
+- [x] Review third-party attribution and select Apache-2.0 for original work
+- [ ] Build the combined image from a clean checkout
+- [ ] Replay the same 258,048-token prefix from LMCache after a process restart
 - [ ] Pass one 260,096-token prompt plus 2,048-token output boundary test
-- [ ] Verify container health and zero restarts after each large test
-- [ ] Generate image digest and source checksums
-- [ ] Review third-party attribution and select the release license
+- [ ] Generate and publish a container image digest
 - [ ] Replace the local image tag with the approved registry tag
-- [ ] Obtain explicit approval before any push or image publication
 
+The source release is intentionally marked experimental until the remaining
+production gates pass.

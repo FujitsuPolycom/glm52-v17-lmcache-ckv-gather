@@ -8,21 +8,23 @@ This package builds one pinned container containing:
 
 ## Status
 
-This is a local staging package, not a published release. GPU validation of the
-multi-future LMCache fix is still pending. Do not use it as a production image.
-An empty private staging repository exists under `FujitsuPolycom`; this source
-has not been pushed to it.
+This is a GPU-validated **experimental** release, not a production-supported
+vLLM distribution. It pins one specific Fathomless Firmament v17 image and
+fails closed if the expected vLLM source hashes do not match.
 
-Validated before the pending fix:
+The final edge-case gate passed three cold 258,048-token prompts in one model
+process and after a clean host reboot. Every run drained 2,016 LMCache objects
+(9,562,226,688 bytes), and all 20 immediate cache-unique follow-up requests
+returned HTTP 200. The tested container remained healthy with zero restarts,
+no host OOM, and no CUDA or `EngineDeadError` log entries.
 
-- CKV-gather prefill at 8K, 64K, 96K, 128K, and 192K
-- 12-cell decode parity against stock v17
-- a 196,610-token request with the CUDA IPC event-lifetime backport
-- a 258,048-token request completed, but the engine later faulted while polling
-  an overwritten chunk-store future at the first MTP transition
+The release contains three related corrections:
 
-The staged fix retains every outstanding store future and its matching CUDA IPC
-event for all 84 chunks in a 258,048-token request.
+- LMCache retains every chunk-store future and its matching CUDA IPC event.
+- Full-CKV all-gather uses vLLM's current-stream PyNccl communicator before the
+  shared arena is reused by another layer.
+- The packed B12X indexer exposes only the active page-table width instead of
+  stale capacity-only columns after a large request.
 
 ## Tested configuration
 
@@ -70,13 +72,21 @@ python3 base/verify_reuse.py \
   --output results/reuse-8k.json
 ```
 
-The 258,048-token boundary test is intentionally omitted from the public quick
-start until the staged multi-future fix passes on GPU hardware.
+Run the release regression that found the original asynchronous CUDA fault:
+
+```bash
+bash scripts/validate-boundary-followups.sh
+```
+
+By default it clears LMCache, sends an exact 258,048-token cold prompt, waits
+for every store to drain, then sends four unique small requests immediately.
+Expect roughly 90-100 seconds after model warmup on four RTX PRO 6000 GPUs.
 
 ## Layout
 
 - `base/`: LMCache and v17 integration patches
 - `gather/`: CKV-gather vLLM overlay and runtime validator
+- `patches/`: reviewable machine-applicable vLLM diff and patch notes
 - `benchmarks/`: selected raw results and summaries
 - `tests/`: source-only regression and release-layout checks
 - `release-manifest.json`: pinned components, limits, and validation state

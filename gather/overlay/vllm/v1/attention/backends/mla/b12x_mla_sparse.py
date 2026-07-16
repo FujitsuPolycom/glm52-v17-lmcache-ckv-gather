@@ -90,10 +90,51 @@ def _get_ckv_gather_workspace(
     """Return one CKV arena per worker GPU, isolated from graph scratch."""
     key = (device.type, device.index)
     workspace = _CKV_GATHER_WORKSPACES.get(key)
-    if workspace is None or workspace.numel() < nbytes:
+    if workspace is None:
         workspace = torch.empty((nbytes,), dtype=torch.uint8, device=device)
         _CKV_GATHER_WORKSPACES[key] = workspace
+    elif workspace.numel() < nbytes:
+        raise RuntimeError(
+            "CKV gather workspace cannot grow after attention layers retain "
+            f"aliases: existing={workspace.numel()} requested={nbytes}"
+        )
     return workspace[:nbytes]
+
+
+def _dcp_all_gather_current_stream(
+    group,
+    input_tensor: torch.Tensor,
+    output_tensor: torch.Tensor,
+) -> None:
+    """All-gather along dim 0 without leaving writes on a foreign stream."""
+    if not input_tensor.is_contiguous() or not output_tensor.is_contiguous():
+        raise ValueError("CKV all-gather tensors must be contiguous")
+    if (
+        output_tensor.shape[0] != input_tensor.shape[0] * group.world_size
+        or output_tensor.shape[1:] != input_tensor.shape[1:]
+    ):
+        raise ValueError("CKV all-gather tensors have incompatible shapes")
+
+    communicator = getattr(group, "device_communicator", None)
+    pynccl_comm = getattr(communicator, "pynccl_comm", None)
+    if pynccl_comm is not None and not getattr(pynccl_comm, "disabled", False):
+        pynccl_comm.all_gather(output_tensor, input_tensor)
+        return
+
+    device_group = getattr(group, "device_group", None)
+    if device_group is None:
+        device_group = getattr(communicator, "device_group", None)
+    if device_group is not None:
+        dist.all_gather_into_tensor(
+            output_tensor,
+            input_tensor,
+            group=device_group,
+            async_op=False,
+        )
+        return
+
+    gathered = group.all_gather(input_tensor, dim=0)
+    output_tensor.copy_(gathered)
 
 
 def _env_int(name: str, default: int) -> int:
@@ -1214,13 +1255,12 @@ class B12xMLASparseImpl(SparseMLAAttentionImpl[B12xMLASparseMetadata]):
         from vllm.distributed.parallel_state import get_dcp_group
 
         dcp_group = get_dcp_group()
-        dist.all_gather_into_tensor(
-            gathered_buffer[: self.dcp_world_size * padded_tokens].view(-1),
+        _dcp_all_gather_current_stream(
+            dcp_group,
             local_buffer[:padded_tokens].view(-1),
-            group=dcp_group.device_group,
-            async_op=False,
+            gathered_buffer[: self.dcp_world_size * padded_tokens].view(-1),
         )
-        self._debug_sync_ckv_stage(2, "NCCL all_gather")
+        self._debug_sync_ckv_stage(2, "current-stream NCCL all_gather")
         # Keep the cache geometry stable across requests. CuTe/B12X caches the
         # compiled prefill launch, while ``padded_tokens`` grows with context;
         # exposing a differently sized first dimension on every request can
