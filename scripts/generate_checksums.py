@@ -12,7 +12,7 @@ BINARY_SUFFIXES = {".png"}
 
 
 def source_files() -> list[Path]:
-    return sorted(
+    paths = (
         path
         for path in ROOT.rglob("*")
         if path.is_file()
@@ -20,6 +20,7 @@ def source_files() -> list[Path]:
         and not any(part in EXCLUDED_PARTS for part in path.relative_to(ROOT).parts)
         and path.suffix not in {".pyc", ".pyo"}
     )
+    return sorted(paths, key=lambda path: path.relative_to(ROOT).as_posix())
 
 
 def canonical_bytes(path: Path) -> bytes:

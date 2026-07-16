@@ -7,9 +7,14 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 CHECKSUMS = runpy.run_path(str(ROOT / "scripts/generate_checksums.py"))
 canonical_bytes = CHECKSUMS["canonical_bytes"]
+source_files = CHECKSUMS["source_files"]
 
 
 class ChecksumTests(unittest.TestCase):
+    def test_release_paths_use_platform_independent_order(self) -> None:
+        paths = [path.relative_to(ROOT).as_posix() for path in source_files()]
+        self.assertEqual(paths, sorted(paths))
+
     def test_text_checksums_are_independent_of_line_endings(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
