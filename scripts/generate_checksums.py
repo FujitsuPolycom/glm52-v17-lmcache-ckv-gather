@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "SHA256SUMS"
 EXCLUDED_PARTS = {".git", "__pycache__", "results"}
 EXCLUDED_NAMES = {".env", "SHA256SUMS"}
+BINARY_SUFFIXES = {".png"}
 
 
 def source_files() -> list[Path]:
@@ -21,10 +22,17 @@ def source_files() -> list[Path]:
     )
 
 
+def canonical_bytes(path: Path) -> bytes:
+    data = path.read_bytes()
+    if path.suffix.lower() not in BINARY_SUFFIXES:
+        data = data.replace(b"\r\n", b"\n")
+    return data
+
+
 def render() -> str:
     rows = []
     for path in source_files():
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        digest = hashlib.sha256(canonical_bytes(path)).hexdigest()
         rows.append(f"{digest}  {path.relative_to(ROOT).as_posix()}")
     return "\n".join(rows) + "\n"
 
@@ -40,11 +48,10 @@ def main() -> int:
             return 1
         print(f"Verified {len(source_files())} release files")
         return 0
-    OUTPUT.write_text(expected)
+    OUTPUT.write_text(expected, newline="\n")
     print(f"Wrote {OUTPUT} for {len(source_files())} release files")
     return 0
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
