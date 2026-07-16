@@ -1,0 +1,32 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Python and release-layout tests
+        run: python -m unittest discover -s tests -v
+      - name: Patch pristine LMCache 0.4.6
+        env:
+          RUN_LMCACHE_SOURCE_TEST: "1"
+        run: python -m unittest discover -s tests -p test_lmcache_source_patch.py -v
+      - name: Shell syntax
+        run: bash -n base/start-v17-lmcache.sh base/smoke-cache-daemon.sh scripts/preflight.sh
+      - name: Compose interpolation
+        run: docker compose --env-file .env.example config --quiet
+      - name: Dockerfile static check
+        run: docker build --check .
+      - name: Verify committed checksums
+        run: python scripts/generate_checksums.py --check
+

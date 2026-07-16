@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "release_version": "0.1.0-exp.1",
+  "status": "local-staging-gpu-validation-pending",
+  "published": false,
+  "repository": {
+    "url": "https://github.com/FujitsuPolycom/glm52-v17-lmcache-ckv-gather",
+    "visibility": "private",
+    "code_pushed": false
+  },
+  "base_image": {
+    "reference": "voipmonitor/vllm:fathomless-firmament-v17-vllm05f50ae-b12x1377d5f-fi801d57a-cu132-20260715",
+    "digest": "sha256:9b6f1ab6db4d3a7b7b786481eb32abe82e86d185648d62c3ac1cfa6d72a55e47"
+  },
+  "components": {
+    "vllm": "0.11.2.dev280+fathomless.firmament.v17.vllm05f50ae",
+    "lmcache": "0.4.6",
+    "model": "madeby561/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid"
+  },
+  "tested_topology": {
+    "gpu": "4x NVIDIA RTX PRO 6000 Blackwell 96GB",
+    "tp": 4,
+    "dcp": 4,
+    "mtp": 3
+  },
+  "runtime": {
+    "max_model_len": 262144,
+    "max_num_batched_tokens": 3072,
+    "max_num_seqs": 8,
+    "max_cudagraph_capture_size": 64,
+    "gpu_memory_utilization": 0.968,
+    "kv_cache_memory_bytes_per_rank": 4563402752,
+    "gpu_kv_pool_tokens": 492800,
+    "lmcache_l1_gib": 48,
+    "lmcache_payload_tokens_approx": 1391758
+  },
+  "validation": {
+    "ckv_gather_8k_to_128k": "passed",
+    "decode_parity_12_cell": "passed",
+    "ipc_event_backport_192k": "passed",
+    "258048_token_chunked_store": "pending-after-multi-future-fix",
+    "production_ready": false
+  }
+}
