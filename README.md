@@ -1,5 +1,9 @@
 # GLM-5.2 v17 LMCache + CKV-gather experimental image
 
+*Research and concepts in this repo have been fully absorbed in to the latest GLM model recipes here:*
+https://github.com/local-inference-lab/rtx6kpro/tree/master/models
+
+
 This package builds one pinned container containing:
 
 - Fathomless Firmament v17 for GLM-5.2 on four RTX PRO 6000 GPUs
